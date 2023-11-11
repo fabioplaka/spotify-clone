@@ -1,3 +1,5 @@
+"use client";
+
 import { MyUserContextProvider } from "@/hooks/useUser";
 import React from "react";
 
