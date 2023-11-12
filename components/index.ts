@@ -6,3 +6,5 @@ export * from "./Button";
 export * from "./List";
 export * from "./Modal";
 export * from "./AuthModal";
+export * from "./UploadModal";
+export * from "./Input";
