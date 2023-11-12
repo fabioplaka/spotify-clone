@@ -7,6 +7,11 @@ import { RxCaretLeft, RxCaretRight } from "react-icons/rx";
 import { HiHome } from "react-icons/hi";
 import { BiSearch } from "react-icons/bi";
 import { UIButton } from "..";
+import useAuthModal from "@/hooks/useAuthModal";
+import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import { useUser } from "@/hooks/useUser";
+import { FaUserAlt } from "react-icons/fa";
+import toast from "react-hot-toast";
 
 interface HeaderProps {
   children: React.ReactNode;
@@ -15,8 +20,18 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ children, className }) => {
   const router = useRouter();
+  const { onOpen } = useAuthModal();
 
-  const handleLogout = () => {};
+  const supabaseClient = useSupabaseClient();
+  const { user } = useUser();
+
+  const handleLogout = async () => {
+    const { error } = await supabaseClient.auth.signOut();
+    router.refresh();
+
+    if (error) toast.error(error.message);
+    else toast.success("Logged out!");
+  };
 
   return (
     <div
@@ -49,21 +64,35 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
           </button>
         </div>
         <div className="flex justify-between items-center gap-x-4">
-          <>
-            <div>
+          {user ? (
+            <div className="flex gap-x-4 items-center">
+              <UIButton onClick={handleLogout} className="bg-white px-6 py-2">
+                Logout
+              </UIButton>
               <UIButton
-                onClick={() => {}}
-                className="bg-transparent text-neutral-300 font-medium"
+                onClick={() => router.push("/account")}
+                className="bg-white"
               >
-                Sign Up
+                <FaUserAlt />
               </UIButton>
             </div>
-            <div>
-              <UIButton onClick={() => {}} className="bg-white px-6 py-2">
-                Login
-              </UIButton>
-            </div>
-          </>
+          ) : (
+            <>
+              <div>
+                <UIButton
+                  onClick={onOpen}
+                  className="bg-transparent text-neutral-300 font-medium"
+                >
+                  Sign Up
+                </UIButton>
+              </div>
+              <div>
+                <UIButton onClick={onOpen} className="bg-white px-6 py-2">
+                  Login
+                </UIButton>
+              </div>
+            </>
+          )}
         </div>
       </div>
       {children}
