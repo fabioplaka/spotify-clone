@@ -8,3 +8,4 @@ export * from "./Modal";
 export * from "./AuthModal";
 export * from "./UploadModal";
 export * from "./Input";
+export * from "./Media";
