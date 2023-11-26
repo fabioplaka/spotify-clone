@@ -1,6 +1,6 @@
 "use clinet";
 
-import { MediaItem } from "@/components";
+import { LikeButton, MediaItem } from "@/components";
 import { Song } from "@/types/SongTypes";
 import React from "react";
 
@@ -21,6 +21,7 @@ const SearchContent: React.FC<SearchContentProps> = ({ songs }) => {
           <div className="flex-1">
             <MediaItem onClick={() => {}} data={song} />
           </div>
+          <LikeButton songId={song.id} />
         </div>
       ))}
     </div>
