@@ -9,3 +9,5 @@ export * from "./AuthModal";
 export * from "./UploadModal";
 export * from "./Input";
 export * from "./Media";
+export * from "./Player";
+export * from "./Slider";
