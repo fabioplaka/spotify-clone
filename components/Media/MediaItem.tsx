@@ -5,10 +5,10 @@ import { Song } from "@/types/SongTypes";
 import Image from "next/image";
 import React from "react";
 
-type MediaItemProps = {
+interface MediaItemProps {
   data: Song;
   onClick?: (id: string) => void;
-};
+}
 
 const MediaItem: React.FC<MediaItemProps> = ({ data, onClick }) => {
   const imageUrl = useLoadImage(data);

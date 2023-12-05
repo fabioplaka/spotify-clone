@@ -11,7 +11,7 @@ import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
 import useAuthModal from "@/hooks/useAuthModal";
 
-type AuthModalProps = {};
+interface AuthModalProps {}
 
 const AuthModal: React.FC<AuthModalProps> = ({}) => {
   const supabaseClient = useSupabaseClient();
