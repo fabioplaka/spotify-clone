@@ -1,4 +1,4 @@
-"use clinet";
+"use client";
 
 import { LikeButton, MediaItem } from "@/components";
 import useOnPlay from "@/hooks/useOnPlay";
