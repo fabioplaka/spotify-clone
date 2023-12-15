@@ -11,3 +11,4 @@ export * from "./Input";
 export * from "./Media";
 export * from "./Player";
 export * from "./Slider";
+export * from "./SubscribeModal";
